@@ -1,0 +1,118 @@
+#sideBar {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: -1;
+}
+
+p {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    padding: 10px;
+    border-style: solid;
+    margin: 10px;
+}
+
+nav.light {
+    background-color:rgb(196, 196, 196);
+    color: black;
+}
+
+.light {
+    background-color: rgb(236, 232, 232);
+}
+
+h1 {
+    margin-left: 2%;
+}
+
+.cancel {
+background-color: rgb(186, 98, 98);
+}
+
+.cancel, .save {
+    grid-row-start: 10;
+    grid-row-end: 11;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-column-start: 3;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: -1;
+}
+
+textarea {
+    padding: 5px;
+    display: block;
+    margin: 1% 1% 1% 1%;
+    width: 95%;
+    border-radius: 8px;
+    resize: none;
+    font-size: 20px;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: 2;
+    grid-row-end: 10;
+}
+
+body {
+    margin: 0px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    height: 100vh;
+}
+
+button {
+border-radius: 8px;
+border: none;
+font-size: 24px;
+padding: 10px;
+margin: 20px;
+width: 150px;
+color: white;
+}
+
+.green {
+    background-color: rgb(93, 152, 124);
+}
+
+.right {
+    color: black;
+}
+
+h2 {
+    border-bottom-style: solid;
+} 
+
+.dark {
+    background-color: rgb(101, 101, 101);
+}
+
+nav.dark {
+    background-color: rgb(58, 58, 58);
+    color: 	rgb(135, 134, 134);
+}
+
+#shift {
+    grid-column-start: -2;
+    grid-column-end: -1;
+}
+
+@media only screen and (max-width:600px) {
+    button {
+        font-size: 18px;
+        width: 100px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+}
+
