@@ -1,30 +1,27 @@
 const express = require('express')
 const fs = require('fs')
+var http    = require('http');
+var path    = require('path');
+var engine  = require('ejs-locals');
+var app     = express();
 
-//Starting a server
-const app = express()
-// This is a built-in middleware function in Express. It serves static files
-app.use(express.static('public'))
-//This is a built-in middleware function in Express. It parses incoming requests with JSON
-app.use(express.json({ limit: '1mb' }))
-
-//add a new note
-app.post('/newNote', (request, response) => {
-  //data is already parsed back to JS obj
-  const data = request.body
-  //Converting data to JSON string and 
-  //Use fs module to write a json file with data's title as it's name
-  fs.writeFileSync(`${data.title}.json`, JSON.stringify(data));
-  response.json(data)
-})
-
-
-app.get('/oneNote', (req, res) => {
-  // anything after the  ? in the URL is saved as JS object in req.query
-  const noteTitle = req.query.note;
-  let data = fs.readFileSync(`${noteTitle}.json`, 'utf-8')
-  res.json(data) 
-})
-
-
-app.listen(3000, () => console.log('go to http://localhost:3000'))
+// Enable routing and use port 1337.
+require('./router')(app);
+app.set('port', 1337);
+ 
+ // Set up ejs templating.
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
+ 
+// Set view folder.
+app.set('views', path.join(__dirname, 'views'));
+ 
+// That line is to specify a directory where you could 
+// link to static files (images, CSS, etc.). 
+// So if you put a style.css file in that directory and you 
+// could link directly to it in your view <link href=”style.css” rel=”stylesheet”>
+app.use(express.static(path.join(__dirname, 'static')));
+ 
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
