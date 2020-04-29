@@ -1,0 +1,11 @@
+<p>Welcome to the homepage</p>
+<% for(var i=0; i < notes.length; i++) { %>
+    <ul>
+        <li>
+            <%= notes[i].author %>
+            <%= notes[i].content %>
+        </li>
+    </ul>
+<% } %>
+
+<%= errorMessage %>
