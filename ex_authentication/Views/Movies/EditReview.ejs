@@ -1,0 +1,22 @@
+<% layout('../layouts/mainlayout.ejs') -%>
+
+<form action="/Movies/UpdateReview" method="POST">
+
+    <input type='hidden' name="_id" value= <%= movies._id %> /> <br/>
+    <input type='hidden' name="movieName" value= <%= movies.movieName %> />
+    <input type='hidden' name="user" value= <%= movies.movieArray.user %> />
+
+
+    <b> <h5><%= movies.movieName %></h5> </b> <br>
+
+    <b>Review:</b>
+    <input type='text'  name="review"
+           value="<%= movies.movieArray[movieIndex].review ? movies.movieArray[movieIndex].review : '' %>"  /><br/><br/>
+    <b>Rating:</b>
+    <input type='text'  name="rating"
+           value="<%= movies.movieArray[movieIndex].rating ? movies.movieArray[movieIndex].rating : '' %>"  /><br/>
+    <p>(1 - 5)</p>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+<%= errorMessage %>

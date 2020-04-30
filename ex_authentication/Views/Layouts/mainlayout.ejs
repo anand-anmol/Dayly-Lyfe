@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<main role="main" class="container">
+    <div class="starter-template">
+        <a href='/'>Home</a> <b>|</b>
+        <a href='/User/Register'>Register</a> <b>|</b>
+        <!-- Show 'Logout' and user name if authenticated. -->
+        <%if (reqInfo.authenticated) { %>
+            <a href='/Movies/MyReviews'>My Reviews</a> <b>|</b>
+
+            <a href='/User/Logout'>Logout</a> [<%= reqInfo.username %>]
+
+        <!-- 'else' must be in separate section with curly brackets to work. -->
+        <% } else { %>
+          <a href='/User/Login'>Login</a>
+        <% } %>
+
+        <!-- Child view goes here. -->
+        <%- body %>
+    </div>
+</main>
+
+</body>
+</html>
