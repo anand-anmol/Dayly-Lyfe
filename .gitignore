@@ -1,2 +1,4 @@
 node_modules/
-DaylyLyfe.dbls
+DaylyLyfe.db
+package-lock.json
+.vscode/launch.json
