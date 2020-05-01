@@ -1,7 +1,7 @@
 const User           = require('../models/user');
 var   passport       = require('passport');
+var sqlite3          = require('sqlite3')
 const RequestService = require('../Services/RequestService');
-
 
 // Displays registration form.
 exports.Register = async function(req, res) {
@@ -16,35 +16,17 @@ exports.RegisterUser  = async function(req, res){
     var passwordConfirm = req.body.passwordConfirm;
 
     if (password == passwordConfirm) {
+        let db               = new sqlite3.Database('../DailyLyfe.db')
 
-        // Creates user object with mongoose model.
-        // Note that the password is not present.
-        var newUser = new User({
-            firstName:    req.body.firstName,
-            lastName:     req.body.lastName,
-            email:        req.body.email,
-            username:     req.body.username,
-        });
-       
-        // Uses passport to register the user.
-        // Pass in user object without password
-        // and password as next parameter.
-        User.register(new User(newUser), req.body.password, 
-                function(err, account) {
-                    // Show registration form with errors if fail.
-                    if (err) {
-                        let reqInfo = RequestService.reqHelper(req);
-                        return res.render('User/Register', 
-                        { user : newUser, errorMessage: err, 
-                          reqInfo:reqInfo });
-                    }
-                    // User registered so authenticate and redirect to secure 
-                    // area.
-                    passport.authenticate('local') (req, res, 
-                            function () { res.redirect('/User/SecureArea'); });
-                });
+       db.run(`INSERT INTO users(username, password) VALUES(?, ?)`, [req.body.username, req.body.password], (err) => {
+        if(err) {
+            return console.log(err.message); 
+        }
+        console.log('Row was added to the table: ${this.lastID}')
 
-    }
+       db.close
+
+    })}
     else {
       res.render('User/Register', { user:newUser, 
               errorMessage: "Passwords do not match.", 

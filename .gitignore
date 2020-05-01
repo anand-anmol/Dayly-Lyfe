@@ -2,3 +2,4 @@ node_modules/
 DaylyLyfe.db
 package-lock.json
 .vscode/launch.json
+DaylyLyfe.sqlite3.db
