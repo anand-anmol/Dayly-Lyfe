@@ -1,3 +1,5 @@
+import { Model } from "sequelize/types";
+
 let today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
@@ -92,3 +94,7 @@ function createNote() {
     // window.location.href = "/" + event.target.innerHTML + "/" + currentMonth + "/" + currentYear
     console.log(event.target.innerHTML, currentMonth, currentYear)
 }
+
+module.exports = function(){
+    return 'hello';
+  }

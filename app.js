@@ -5,16 +5,16 @@ var engine  = require('ejs-locals');
 var app     = express();
 
 // Parse URL-encoded bodies (as sent by HTML forms)
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
-// Parse JSON bodies (as sent by API clients)
-app.use(express.json());
-var cors = require('cors');
-app.use(cors());
+// // Parse JSON bodies (as sent by API clients)
+// app.use(express.json());
+// var cors = require('cors');
+// app.use(cors());
 
 // Enable routing and use port 1337.
 require('./router')(app);
-app.set('port', 1337);
+app.set('port', 1338);
 
 // Set up ejs templating.
 app.engine('ejs', engine);
@@ -36,3 +36,53 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 module.exports = app;
+
+
+let today = new Date();
+let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
+let currentDay = today.getDate();
+
+function month(){
+  return currentMonth + 1
+}
+
+function next_month(){
+  return (currentMonth + 1) + 1
+}
+
+function next_year(){
+  return currentYear + 1
+}
+
+function next_date(){
+  return currentDay + 1
+}
+
+function previous_month(){
+  return (currentMonth + 1) - 1
+}
+
+function previous_year(){
+  return currentYear - 1
+}
+
+function previous_date(){
+  return 31 - currentDay
+}
+
+function month_name(){
+  return months[currentMonth]
+}
+
+function year(){
+  return currentYear
+}
+
+function date(){
+  return currentDay
+}
+
+
+module.exports = { month, year, date, month_name, next_month, next_year, next_date, previous_month, previous_date, previous_year}
