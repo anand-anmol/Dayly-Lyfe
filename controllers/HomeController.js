@@ -41,6 +41,7 @@ exports.Create = function(req, res) {
 
 // Creates 'Author'. Called with POST.
 exports.CreateNote = async function(req, res) {
+    console.log(req.body.author, 'test')
     let noteObj = {
         author: req.body.author,
         content: req.body.content
@@ -48,11 +49,25 @@ exports.CreateNote = async function(req, res) {
 
     let repoResponse = await _noteRepo.create(noteObj);
     if(repoResponse.errorMessage == '') {
-        res.render('home/Index',
+        res.render('home/Detail',
             { errorMessage:"", note:repoResponse.note })
     }
     else {
         res.render('home/Index',
             { errorMessage:repoResponse.errorMessage, note:{} })
     }
+}
+
+exports.Detail = async function(req, res) {
+    let id = req.query.id;
+    let repoResponse = await _noteRepo.getNote(id);
+    if(repoResponse.errorMessage == '') {
+        res.render('home/Detail',
+            { errorMessage:"", note:repoResponse.note })
+    }
+    else {
+        res.render('home/Index',
+            { errorMessage:repoResponse.errorMessage, note:{} })
+    }
+    res.render('home/Detail');
 }
