@@ -44,6 +44,7 @@ class NoteRepo {
             {
                 author: noteObj.author,
                 content: noteObj.content,
+                date: noteObj.date
             },
             // Only apply update to unique object.
             {
