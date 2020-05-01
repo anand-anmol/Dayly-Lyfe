@@ -56,4 +56,5 @@ exports.CreateNote = async function(req, res) {
 
     // window.location.href = "/"
     res.render('home/Index', {notes:[], reqInfo:reqInfo})
+
 }

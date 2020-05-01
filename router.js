@@ -5,6 +5,7 @@ module.exports = function(app){
     app.get('/',            HomeController.Index);
     app.get('/note',            HomeController.Note);
 
+
     app.get('/home/Create', HomeController.Create );
     app.post('/home/CreateNote', HomeController.CreateNote);
     app.get('/User/Login', UserController.Login);
@@ -12,6 +13,7 @@ module.exports = function(app){
     app.get('/User/Logout', UserController.Logout);
     app.get('/User/Register', UserController.Register);
     app.post('/User/RegisterUser', UserController.RegisterUser);
+
 
     // app.get('/login',            UserController.Note);
 }
