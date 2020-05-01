@@ -3,7 +3,26 @@ const fs = require('fs')
 var http    = require('http');
 var path    = require('path');
 var engine  = require('ejs-locals');
+var passport      = require('passport');
+var bodyParser    = require('body-parser');
+var LocalStrategy = require('passport-local').Strategy;
 var app     = express();
+
+
+// app.use(express.urlencoded({ extended: true }));;
+// app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(require('express-session')({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: false
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// const User = require('./models/user');
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 // Enable routing and use port 1337.
 require('./router')(app);

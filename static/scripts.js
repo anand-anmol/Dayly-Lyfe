@@ -91,4 +91,5 @@ function createNote() {
 
     // window.location.href = "/" + event.target.innerHTML + "/" + currentMonth + "/" + currentYear
     console.log(event.target.innerHTML, currentMonth, currentYear)
+    window.location.href = "/home/Create"
 }
