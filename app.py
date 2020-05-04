@@ -5,9 +5,5 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
-@app.route('/showSignUp')
-def showSignUp():
-    return render_template('signup.html')
-
 if __name__ == "__main__":
-    app.run(port=1001)
+    app.run()
