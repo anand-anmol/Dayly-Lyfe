@@ -1,7 +1,0 @@
-CREATE TABLE note (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    author   VARCHAR(255),
-    content    VARCHAR(255),
-    createdAt   DATETIME,
-    updatedAt   DATETIME
-);
