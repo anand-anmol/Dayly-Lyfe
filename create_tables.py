@@ -13,5 +13,12 @@ c.execute('''
             );
           ''')
 
+# c.execute('''
+#             CREATE TABLE "user" (
+#                 "username"	TEXT NOT NULL PRIMARY KEY,
+#                 "password"	TEXT CHECK(length(password)>=8)
+#             );
+#           ''')
+
 conn.commit()
 conn.close()
