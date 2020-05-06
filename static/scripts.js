@@ -92,3 +92,14 @@ function createNote() {
     // window.location.href = "/" + event.target.innerHTML + "/" + currentMonth + "/" + currentYear
     console.log(event.target.innerHTML, currentMonth, currentYear)
 }
+
+let ToDo = document.getElementById("ToDo");
+ToDo.addEventListener('click', unhide);
+
+function unhide() {
+    let ToDoList = document.getElementById("ToDoList");
+    if (ToDoList.style.visibility === "hidden") {
+        ToDoList.style.visibility = "visible";
+      } else {
+        ToDoList.style.visibility = "hidden";
+}}
