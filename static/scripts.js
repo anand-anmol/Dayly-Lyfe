@@ -90,5 +90,7 @@ function makeDatesClickable() {
 function createNote() {
 
     // window.location.href = "/" + event.target.innerHTML + "/" + currentMonth + "/" + currentYear
-    console.log(event.target.innerHTML, currentMonth, currentYear)
+    console.log(event.target.innerHTML, currentMonth, currentYear);
+    console.log("hi");
+    window.location.href = "/note"
 }
