@@ -4,3 +4,6 @@ package-lock.json
 .vscode/launch.json
 DaylyLyfe.sqlite3.db
 database.sqlite3
+venv/
+__pycache__/
+.vscode
