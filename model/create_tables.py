@@ -8,6 +8,7 @@ c.execute('''
                 "id"	INTEGER PRIMARY KEY AUTOINCREMENT,
                 "author"	TEXT NOT NULL,
                 "content"	TEXT NOT NULL,
+                "date"	DATETIME NOT NULL,
                 "createdAt"	DATETIME NOT NULL,
                 "updatedAt" DATETIME NOT NULL
             );

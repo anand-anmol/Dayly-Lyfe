@@ -8,7 +8,7 @@
 <body>
 
 <header>
-    <a href="/">Home</a> | <a href="/calander/note">Create Note</a> | <a href="/calander/view">View Notes</a>
+    <a href="/">Home</a> | <a href="/calander/view">View Notes</a>
 </header>
 
     <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
@@ -178,9 +178,24 @@ function makeDatesClickable() {
 }
 
 function createNote() {
-
     console.log(event.target.innerHTML, currentMonth, currentYear);
-    window.location.href = "/create/note"
+
+    // Sending and receiving data in JSON format using POST method
+    //
+    var xhr = new XMLHttpRequest();
+    var url = "url";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var json = JSON.parse(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"day": event.target.innerHTML, "month": currentMonth + 1, "year": currentYear});
+    xhr.send(data);
+
+    window.location.href = "/calander/note"
+
 }</script>
 
 </body>

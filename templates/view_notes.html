@@ -7,14 +7,17 @@
 <body>
 
 <header>
-    <a href="/">Home</a> | <a href="/calander/note">Create Note</a> | <a href="/calander/view">View Notes</a>
+    <a href="/">Home</a> | <a href="/calander/view">View Notes</a>
 </header>
 
 <h2>Notes:</h2>
 {% for note in notes %}
 <table>
     <tr>
-        <td><b>{{ note.author }}</b> - </td>
+        <td><u><h3>{{ note.date }}</h3></u></td>
+    </tr>
+    <tr>
+        <td><b>{{ note.author }}:</b></td>
         <td>{{ note.content }}</td>
     </tr>
 </table>
