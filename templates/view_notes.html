@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header>
+    <a href="/">Home</a> | <a href="/calander/view">View Notes</a>
+</header>
+
+<h2>Notes:</h2>
+{% for note in notes %}
+<table>
+    <tr>
+        <td><u><h3>{{ note.date }}</h3></u></td>
+    </tr>
+    <tr>
+        <td><b>{{ note.author }}:</b></td>
+        <td>{{ note.content }}</td>
+    </tr>
+</table>
+
+{% endfor %}
+
+</body>
+</html>

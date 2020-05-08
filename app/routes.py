@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, CreateNoteForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Note
 from werkzeug.urls import url_parse
 
 @app.route('/')
@@ -18,6 +18,7 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
+        print(current_user)
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
@@ -34,7 +35,6 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -48,3 +48,15 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+@app.route('/create-note', methods=['GET', 'POST'])
+def create_note():
+    if not current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = CreateNoteForm()
+    if form.validate_on_submit():
+        note = Note(user_id=form.author.data, content=form.content.data)
+        db.session.add(note)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('create-note.html', title="Create Note", form=form)
