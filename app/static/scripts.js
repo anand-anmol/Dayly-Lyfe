@@ -92,7 +92,7 @@ function createNote() {
     // window.location.href = "/" + event.target.innerHTML + "/" + currentMonth + "/" + currentYear
     console.log(event.target.innerHTML, currentMonth, currentYear, today.getDay);
     console.log("hi");
-    window.location.href = "/note"
+    window.location.href = "/create-note"
     $.post( "/postmethod", {
     javascript_data: data
 });
