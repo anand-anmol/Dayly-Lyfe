@@ -4,13 +4,12 @@ from app.forms import LoginForm, RegistrationForm, CreateNoteForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Note
 from werkzeug.urls import url_parse
+import datetime
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
-    posts = []
-    return render_template("index.html", title='Home Page', posts=posts)
+    return render_template("index.html", title='Home Page')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -49,14 +48,22 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/create-note', methods=['GET', 'POST'])
-def create_note():
+@app.route('/create-note/<date>/<month>/<year>', methods=['GET', 'POST'])
+def create_note(date, month, year):
     if not current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
     form = CreateNoteForm()
     if form.validate_on_submit():
-        note = Note(user_id=form.author.data, content=form.content.data)
+        date = datetime.datetime(int(year), int(month) + 1, int(date))
+        note = Note(user_id=current_user.username, content=form.content.data, date=date)
         db.session.add(note)
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('create-note.html', title="Create Note", form=form)
+
+@app.route('/notes', methods=['GET'])
+def view_notes():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    notes = db.session.query(Note).filter_by(user_id=current_user.username).all()
+    return render_template('view-notes.html', title="Your notes", notes=notes)

@@ -29,6 +29,6 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class CreateNoteForm(FlaskForm):
-    author = StringField('Author', validators=[DataRequired()])
     content = StringField('Content', validators=[DataRequired()])
+
     submit = SubmitField('Save Note')

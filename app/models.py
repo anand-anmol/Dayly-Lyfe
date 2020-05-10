@@ -26,8 +26,9 @@ class Note(db.Model):
     content = db.Column(db.String)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.DateTime, index=True)
     def __repr__(self):
-        return '<Note {}>'.format(self.body)
+        return '<Note {}>'.format(self.content)
 
 
 @login.user_loader
