@@ -100,6 +100,54 @@ function unhide() {
     let ToDoList = document.getElementById("ToDoList");
     if (ToDoList.style.visibility === "hidden") {
         ToDoList.style.visibility = "visible";
-      } else {
+    } else {
         ToDoList.style.visibility = "hidden";
-}}
+    }
+}
+
+let createToDo = document.getElementById("createToDo");
+createToDo.addEventListener('click', createBox);
+
+function createBox() {
+    let zone = document.getElementById("writeZone");
+
+    let text = document.createElement("textarea");
+    text.id = "whatWeDo"
+    zone.appendChild(text);
+    createToDo.removeEventListener('click', createBox);
+
+    let save = document.createElement("button");
+    save.value = "Save";
+    save.innerText = "Save";
+    save.id = "SaveBtn";
+    zone.appendChild(save);
+
+    let deleteBtn = document.createElement("button");
+    deleteBtn.value = "Delete";
+    deleteBtn.innerText = "Delete";
+    deleteBtn.id = "deleteBtn";
+    zone.appendChild(deleteBtn);
+
+    let noToDo = document.getElementById("deleteBtn");
+    noToDo.addEventListener('click', stopToDo);
+
+    function stopToDo() {
+        while (zone.firstChild) {
+            zone.removeChild(zone.firstChild);
+        }
+        createToDo.addEventListener('click', createBox);
+    }
+
+    let saveToDO = document.getElementById("SaveBtn");
+    saveToDO.addEventListener('click', saveOne);
+
+    function saveOne() {
+        let words = document.getElementById("whatWeDo").innerText;
+        let newOption = document.createElement("option");
+        newOption.innerText = words
+        let ToDoList = document.getElementById("ToDoList");
+        ToDoList.appendChild(newOption)
+console.log(words)
+    }
+
+}
