@@ -120,12 +120,14 @@ function createBox() {
     save.value = "Save";
     save.innerText = "Save";
     save.id = "SaveBtn";
+    save.classList.add("card-header");
     zone.appendChild(save);
 
     let deleteBtn = document.createElement("button");
     deleteBtn.value = "Delete";
     deleteBtn.innerText = "Delete";
     deleteBtn.id = "deleteBtn";
+    deleteBtn.classList.add("card-header");
     zone.appendChild(deleteBtn);
 
     let noToDo = document.getElementById("deleteBtn");
@@ -137,17 +139,4 @@ function createBox() {
         }
         createToDo.addEventListener('click', createBox);
     }
-
-    let saveToDO = document.getElementById("SaveBtn");
-    saveToDO.addEventListener('click', saveOne);
-
-    function saveOne() {
-        let words = document.getElementById("whatWeDo").innerText;
-        let newOption = document.createElement("option");
-        newOption.innerText = words
-        let ToDoList = document.getElementById("ToDoList");
-        ToDoList.appendChild(newOption)
-console.log(words)
-    }
-
 }
