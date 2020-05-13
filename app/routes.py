@@ -67,3 +67,7 @@ def view_notes():
         return redirect(url_for('login'))
     notes = db.session.query(Note).filter_by(user_id=current_user.username).all()
     return render_template('view-notes.html', title="Your notes", notes=notes)
+
+@app.route('/about', methods=['GET'])
+def About():
+    return render_template("About.html", title='About Page')
