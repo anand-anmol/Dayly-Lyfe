@@ -1,5 +1,4 @@
 import unittest
-import pandas as pd
 from app import app
 
 class TestAskMe(unittest.TestCase):
