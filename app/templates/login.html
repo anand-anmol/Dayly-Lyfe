@@ -1,18 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
+<style>
+
+.login {
+  margin-left: 20px;
+  margin-top: 30px;
+  max-width: 350px;
+  height: 350px;
+  border: 1px solid #9C9C9C;
+  background-image: linear-gradient(to bottom, #aec1c3, #a9b5b7, #bcc5c6, #cfd5d5, #e3e5e5);
+}
+
+</style>
+
+<div class="login">
+    <h1 align="center" style="margin-top: 10px">Log In</h1>
+    <div style="margin-left: 15px">
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
+            {{ form.username.label }}:<br>
             {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.password.label }}<br>
+            {{ form.password.label }}:<br>
             {{ form.password(size=32) }}<br>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
@@ -22,5 +37,6 @@
         <p>{{ form.submit() }}</p>
     </form>
     <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
-
+    </div>
+</div>
 {% endblock %}
