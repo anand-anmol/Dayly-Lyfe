@@ -20,9 +20,7 @@
 <div class="noteBlock">
     <b><u>{{i.date}}</u></b>
 
-    <div align="right" style="margin-top: -24px; margin-right: 3px; text-decoration: none;">
-        <a href="{{url_for('delete_note', note_id=i.id)}}">✖</a>
-    </div>
+    <div align="right" style="margin-top: -24px; margin-right: 3px; text-decoration: none;"><a href="{{url_for('delete_note', note_id=i.id)}}">✖</a></div>
 
 <!-- *****USING A DELETE BUTTON INSTEAD*******    -->
 <!--    <form action="{{url_for('delete_note', note_id=i.id)}}" method="post">-->

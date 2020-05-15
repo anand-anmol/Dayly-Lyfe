@@ -91,92 +91,50 @@ function makeDatesClickable() {
 
 
 
-// let ToDo = document.getElementById("ToDo");
-// ToDo.addEventListener('click', unhide);
+let ToDo = document.getElementById("ToDo");
+ToDo.addEventListener('click', unhide);
 
-// function unhide() {
-//     let ToDoList = document.getElementById("ToDoList");
-//     if (ToDoList.style.visibility === "hidden") {
-//         ToDoList.style.visibility = "visible";
-//     } else {
-//         ToDoList.style.visibility = "hidden";
-//     }
-// }
-
-// let createToDo = document.getElementById("createToDo");
-// createToDo.addEventListener('click', createBox);
-
-// function createBox() {
-//     let zone = document.getElementById("writeZone");
-
-//     let text = document.createElement("textarea");
-//     text.id = "whatWeDo"
-//     zone.appendChild(text);
-//     createToDo.removeEventListener('click', createBox);
-
-//     let save = document.createElement("button");
-//     save.value = "Save";
-//     save.innerText = "Save";
-//     save.id = "SaveBtn";
-//     save.classList.add("card-header");
-//     zone.appendChild(save);
-
-//     let deleteBtn = document.createElement("button");
-//     deleteBtn.value = "Delete";
-//     deleteBtn.innerText = "Delete";
-//     deleteBtn.id = "deleteBtn";
-//     deleteBtn.classList.add("card-header");
-//     zone.appendChild(deleteBtn);
-
-//     let noToDo = document.getElementById("deleteBtn");
-//     noToDo.addEventListener('click', stopToDo);
-
-//     function stopToDo() {
-//         while (zone.firstChild) {
-//             zone.removeChild(zone.firstChild);
-//         }
-//         createToDo.addEventListener('click', createBox);
-//     }
-// }
-
-function addThingToDo() {
-    let thingToDo = document.getElementById('thing-to-do').value
-    if (thingToDo.trim() != "") {
-        console.log(thingToDo)
-        $.ajax({
-            url : "/add/thing-to-do",
-            type: "POST",
-            contentType: 'application/json',
-            dataType : 'json',
-            data : JSON.stringify(thingToDo),
-            success: function () {
-                console.log('success')
-                window.location.reload()
-            }
-        });
-        window.location.reload()
+function unhide() {
+    let ToDoList = document.getElementById("ToDoList");
+    if (ToDoList.style.visibility === "hidden") {
+        ToDoList.style.visibility = "visible";
+    } else {
+        ToDoList.style.visibility = "hidden";
     }
 }
 
-function thingCompleted(id) {
-    $.ajax({
-        url : "/complete/thing-to-do/" + id,
-        type: "PUT",
-        success: function () {
-            console.log('success')
-            window.location.reload()
-        }
-    });
-    window.location.reload()
-}
+let createToDo = document.getElementById("createToDo");
+createToDo.addEventListener('click', createBox);
 
-function deleteThingToDo(id) {
-    $.ajax({
-        url : "/delete/thing-to-do/" + id,
-        type: "DELETE",
-        success: function () {
-            console.log('success')
-            window.location.reload()
+function createBox() {
+    let zone = document.getElementById("writeZone");
+
+    let text = document.createElement("textarea");
+    text.id = "whatWeDo"
+    zone.appendChild(text);
+    createToDo.removeEventListener('click', createBox);
+
+    let save = document.createElement("button");
+    save.value = "Save";
+    save.innerText = "Save";
+    save.id = "SaveBtn";
+    save.classList.add("card-header");
+    zone.appendChild(save);
+
+    let deleteBtn = document.createElement("button");
+    deleteBtn.value = "Delete";
+    deleteBtn.innerText = "Delete";
+    deleteBtn.id = "deleteBtn";
+    deleteBtn.classList.add("card-header");
+    zone.appendChild(deleteBtn);
+
+    let noToDo = document.getElementById("deleteBtn");
+    noToDo.addEventListener('click', stopToDo);
+
+    function stopToDo() {
+        while (zone.firstChild) {
+            zone.removeChild(zone.firstChild);
         }
-    });
+        createToDo.addEventListener('click', createBox);
+    }
 }
