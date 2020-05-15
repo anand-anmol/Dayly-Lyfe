@@ -77,8 +77,8 @@ def view_notes():
 
 @app.route('/delete/<string:note_id>', methods=['GET'])
 def delete_note(note_id):
-    # if not current_user.is_authenticated:
-    #     return redirect(url_for('login'))
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
     note = db.session.query(Note).filter(
         Note.id == note_id).first()
     db.session.delete(note)
