@@ -14,7 +14,7 @@ def index():
     things_to_do = []
     if current_user.is_authenticated:
         things_to_do = db.session.query(ThingToDo).filter_by(user_id=current_user.username).all()
-    return render_template("index.html", title='Home Page', things_to_do=things_to_do)
+    return render_template("index.html", title='DaylyLyfe', things_to_do=things_to_do)
 
 @app.route('/about')
 def about():
@@ -81,8 +81,8 @@ def view_notes():
 
 @app.route('/delete/<string:note_id>', methods=['GET'])
 def delete_note(note_id):
-    # if not current_user.is_authenticated:
-    #     return redirect(url_for('login'))
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
     note = db.session.query(Note).filter(
         Note.id == note_id).first()
     db.session.delete(note)
@@ -125,6 +125,10 @@ def complete_thing_to_do(id):
     response = make_response(render_template('index.html'))
 
     return response
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/favicon.ico') 
 def favicon(): 
