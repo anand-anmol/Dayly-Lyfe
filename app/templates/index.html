@@ -2,9 +2,31 @@
 
 {% block content %}
 
-    <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
+<style>
+    .todo {
+        width: 30vw;
+        background-image: linear-gradient(0deg, lightgreen, white);
+        float: right;
+        margin-right: 0vw;
+        margin-top: 10vh;
+        height: 68vh;
+        text-align: center;
+        padding-top: 2%;
+    }
+    .calender {
+        width: 30vw;
+        height: 68vh;
+        margin-left: 0vw;
+        margin-top: 10vh;
+        position: fixed;
+    }
+</style>
+
+    <div class="container">
+
+    <div class="calender" style="opacity: 0.8;">
         <div class="card">
-            <h3 class="card-header" id="monthAndYear"></h3>
+            <h3 class="card-header" id="monthAndYear" align="center"></h3>
             <table class="table table-bordered table-responsive-sm" id="calendar">
                 <thead>
                 <tr>
@@ -74,21 +96,63 @@
                 <option value=2020>2020</option>
             </select>
         </form>
-        <div class="card dropdown">
-            <button class="card-header" id="ToDo">To Do</button>
-            <select class="card" id="ToDoList" style="visibility:hidden">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-            </select>
-            <div id="ToDoButtons">
-                <button class="card-header" id="createToDo" style="display: inline-block;">Create Something To Do</button>
-                <button class="card-header" id="deleteToDo" style="display: inline-block; position: absolute; right: 0px;">Delete Something To Do</button>
-            </div>
-            <div id="writeZone" class="card">
-            </div>
+                </div>
+                </div>
+
+    <div class="todo">
+        <h4>To Do:</h4>
+        <input type="text" id="thing-to-do">
+        <button onclick="addThingToDo()">+</button>
+
+        <div id="things-to-do">
+
+{%for i in things_to_do%}
+
+{%if i.if_done == False%}
+
+    <strong>
+    {{ i.content }} 
+    <button onclick="thingCompleted({{i.id}})" style="text-align: right;">Done</button> <br> 
+    </strong>
+
+{%endif%}
+
+{%if i.if_done == True%}
+
+    <del>
+    {{ i.content }} 
+    <button onclick="deleteThingToDo({{i.id}})" style="text-align: right;">Delete</button> <br> 
+    </del>
+
+{%endif%}
+
+{%endfor%}
+
+            
+
         </div>
+
+        <div id="finished-tasks">
+
         </div>
+
     </div>
+
+</div>
+
+<!--        <div class="card dropdown">-->
+<!--            <button class="card-header" id="ToDo">To Do</button>-->
+<!--            <select class="card" id="ToDoList" style="visibility:hidden">-->
+<!--                <option>1</option>-->
+<!--                <option>2</option>-->
+<!--                <option>3</option>-->
+<!--            </select>-->
+<!--            <div id="ToDoButtons">-->
+<!--                <button class="card-header" id="createToDo" style="display: inline-block;">Create Something To Do</button>-->
+<!--                <button class="card-header" id="deleteToDo" style="display: inline-block; position: absolute; right: 0px;">Delete Something To Do</button>-->
+<!--            </div>-->
+<!--            <div id="writeZone" class="card">-->
+<!--            </div>-->
+<!--        </div>-->
 
 {% endblock %}
