@@ -6,6 +6,7 @@ from app.models import User, Note
 from werkzeug.urls import url_parse
 import datetime
 
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -66,4 +67,17 @@ def view_notes():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
     notes = db.session.query(Note).filter_by(user_id=current_user.username).all()
+    for note in notes:
+        note.date = note.date.strftime("%d %b, %Y")
     return render_template('view-notes.html', title="Your notes", notes=notes)
+
+@app.route('/delete/<string:note_id>', methods=['GET'])
+def delete_note(note_id):
+    # if not current_user.is_authenticated:
+    #     return redirect(url_for('login'))
+    note = db.session.query(Note).filter(
+        Note.id == note_id).first()
+    db.session.delete(note)
+    db.session.commit()
+    return redirect(url_for('view_notes'))
+
