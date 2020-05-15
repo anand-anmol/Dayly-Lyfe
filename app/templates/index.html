@@ -1,8 +1,91 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
 
-{% block content %}
 
-    <div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <style>
+    body {
+      background-image: url("https://wallpaperset.com/w/full/c/9/0/522708.jpg");
+      height: 100%;
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transition: 5s;
+
+      animation-name: animate;
+      animation-direction:alternate-reverse;
+      animation-duration: 30s;
+      animation-fill-mode:both;
+      animation-iteration-count: infinite;
+      animation-play-state: running;
+      animation-timing-function:ease;
+    }
+    @keyframes animate{
+      0%{
+       background-image: url("https://i.pinimg.com/originals/db/ac/56/dbac566ab49bcc2de27c052e7bb3e2d3.jpg");
+      }
+      20%{
+      background-image: url("https://wallpaperset.com/w/full/c/9/0/522708.jpg");
+      }
+      40%{
+        background-image: url("https://d18z89ggtjsooz.cloudfront.net/cache-buster-1488203870/website/var/tmp/image-thumbnails/50000/50585/thumb__content-img/winter-zell-am-see-mit-kitzsteinhorn---flugaufnahme.jpeg");
+      }
+      60%{
+      background-image: url("https://i.redd.it/e4lkg8mghsn31.jpg");
+      }
+      80%{
+      background-image: url("https://www.ecopetit.cat/wpic/mpic/112-1127093_waterfall-nature-river-background.jpg");
+      }
+      100%{
+      background-image: url("https://wallpaperplay.com/walls/full/b/5/9/188622.jpg");
+      }
+    }
+    html {
+        height: 100%;
+    }
+    </style>
+
+</head>
+
+
+<body>
+
+
+
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+  <a class="navbar-brand" href="/">Dayly Lyfe</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navb" class="navbar-collapse collapse hide">
+    <ul class="navbar-nav">
+      <li>
+        <a class="nav-link" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/calander/view">View Notes</a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#"><span class="fas fa-user"></span> Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><span class="fas fa-sign-in-alt"></span> Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <div style="opacity: 0.6;">
         <div class="card">
             <h3 class="card-header" id="monthAndYear"></h3>
             <table class="table table-bordered table-responsive-sm" id="calendar">
@@ -17,17 +100,17 @@
                     <th>Sat</th>
                 </tr>
                 </thead>
-    
+
                 <tbody id="calendar-body">
-    
+
                 </tbody>
             </table>
-    
-            <div class="form-inline">
-    
-                <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
-    
-                <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+
+            <div class="form-inline align= center;">
+
+                <button class="btn btn-outline-primary col-sm-3" id="previous" onclick="previous()">Previous</button>
+
+                <button class="btn btn-outline-primary col-sm-3" id="next" onclick="next()">Next</button>
             </div>
             <br/>
             <form class="form-inline">
@@ -46,10 +129,10 @@
                     <option value=10>Nov</option>
                     <option value=11>Dec</option>
                 </select>
-    
-    
+
+
                 <label for="year">
-    
+
                 </label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
                 <option value=1990>1990</option>
                 <option value=1991>1991</option>
@@ -88,7 +171,149 @@
             <div id="writeZone" class="card">
             </div>
         </div>
-        </div>
+      </div>
     </div>
+<script>
+  let today = new Date();
+  let currentMonth = today.getMonth();
+  let currentYear = today.getFullYear();
+  let selectYear = document.getElementById("year");
+  let selectMonth = document.getElementById("month");
 
-{% endblock %}
+  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  let monthAndYear = document.getElementById("monthAndYear");
+  showCalendar(currentMonth, currentYear);
+
+
+  function next() {
+      currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+      currentMonth = (currentMonth + 1) % 12;
+      showCalendar(currentMonth, currentYear);
+  }
+
+  function previous() {
+      currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+      currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+      showCalendar(currentMonth, currentYear);
+  }
+
+  function jump() {
+      currentYear = parseInt(selectYear.value);
+      currentMonth = parseInt(selectMonth.value);
+      showCalendar(currentMonth, currentYear);
+  }
+
+  function showCalendar(month, year) {
+
+      let firstDay = (new Date(year, month)).getDay();
+      let daysInMonth = 32 - new Date(year, month, 32).getDate();
+
+      let tbl = document.getElementById("calendar-body"); // body of the calendar
+
+      // clearing all previous cells
+      tbl.innerHTML = "";
+
+      // filing data about month and in the page via DOM.
+      monthAndYear.innerHTML = months[month] + " " + year;
+      selectYear.value = year;
+      selectMonth.value = month;
+
+      // creating all cells
+      let date = 1;
+      for (let i = 0; i < 6; i++) {
+          // creates a table row
+          let row = document.createElement("tr");
+
+          //creating individual cells, filing them up with data.
+          for (let j = 0; j < 7; j++) {
+              if (i === 0 && j < firstDay) {
+                  let cell = document.createElement("td");
+                  let cellText = document.createTextNode("");
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+              }
+              else if (date > daysInMonth) {
+                  break;
+              }
+
+              else {
+                  let cell = document.createElement("td");
+                  let cellText = document.createTextNode(date);
+                  if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                      cell.classList.add("bg-info");
+                  } // color today's date
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                  date++;
+              }
+
+
+          }
+
+          tbl.appendChild(row); // appending each row into calendar body.
+      }
+
+      makeDatesClickable();
+
+  }
+
+  function makeDatesClickable() {
+      let calendarBody = document.getElementById('calendar-body');
+      calendarBody.addEventListener('click', function () {
+          window.location.href=`/create-note/${event.target.innerHTML}/${currentMonth}/${currentYear}`
+      });
+  }
+
+
+
+  let ToDo = document.getElementById("ToDo");
+  ToDo.addEventListener('click', unhide);
+
+  function unhide() {
+      let ToDoList = document.getElementById("ToDoList");
+      if (ToDoList.style.visibility === "hidden") {
+          ToDoList.style.visibility = "visible";
+      } else {
+          ToDoList.style.visibility = "hidden";
+      }
+  }
+
+  let createToDo = document.getElementById("createToDo");
+  createToDo.addEventListener('click', createBox);
+
+  function createBox() {
+      let zone = document.getElementById("writeZone");
+
+      let text = document.createElement("textarea");
+      text.id = "whatWeDo"
+      zone.appendChild(text);
+      createToDo.removeEventListener('click', createBox);
+
+      let save = document.createElement("button");
+      save.value = "Save";
+      save.innerText = "Save";
+      save.id = "SaveBtn";
+      save.classList.add("card-header");
+      zone.appendChild(save);
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.value = "Delete";
+      deleteBtn.innerText = "Delete";
+      deleteBtn.id = "deleteBtn";
+      deleteBtn.classList.add("card-header");
+      zone.appendChild(deleteBtn);
+
+      let noToDo = document.getElementById("deleteBtn");
+      noToDo.addEventListener('click', stopToDo);
+
+      function stopToDo() {
+          while (zone.firstChild) {
+              zone.removeChild(zone.firstChild);
+          }
+          createToDo.addEventListener('click', createBox);
+      }
+  }</script>
+
+</body>
+</html>
