@@ -4,19 +4,25 @@
 
 <style>
     .todo {
-        width: 300px;
-        height: 450px;
+        width: 30vw;
         background-image: linear-gradient(0deg, lightgreen, white);
         float: right;
-        margin-top: -25%;
-        margin-right: 50px;
+        margin-right: 0vw;
+        margin-top: 10vh;
+        height: 68vh;
+        text-align: center;
+        padding-top: 2%;
     }
     .calender {
-        width: 900px;
-        margin-left: 50px;
-        margin-top: 50px;
+        width: 30vw;
+        height: 68vh;
+        margin-left: 0vw;
+        margin-top: 10vh;
+        position: fixed;
     }
 </style>
+
+    <div class="container">
 
     <div class="calender" style="opacity: 0.8;">
         <div class="card">
@@ -95,9 +101,44 @@
 
     <div class="todo">
         <h4>To Do:</h4>
-        <input type="text">
-        <input type="button" value="+">
+        <input type="text" id="thing-to-do">
+        <button onclick="addThingToDo()">+</button>
+
+        <div id="things-to-do">
+
+{%for i in things_to_do%}
+
+{%if i.if_done == False%}
+
+    <strong>
+    {{ i.content }} 
+    <button onclick="thingCompleted({{i.id}})" style="text-align: right;">Done</button> <br> 
+    </strong>
+
+{%endif%}
+
+{%if i.if_done == True%}
+
+    <del>
+    {{ i.content }} 
+    <button onclick="deleteThingToDo({{i.id}})" style="text-align: right;">Delete</button> <br> 
+    </del>
+
+{%endif%}
+
+{%endfor%}
+
+            
+
+        </div>
+
+        <div id="finished-tasks">
+
+        </div>
+
     </div>
+
+</div>
 
 <!--        <div class="card dropdown">-->
 <!--            <button class="card-header" id="ToDo">To Do</button>-->
@@ -113,6 +154,5 @@
 <!--            <div id="writeZone" class="card">-->
 <!--            </div>-->
 <!--        </div>-->
-
 
 {% endblock %}
