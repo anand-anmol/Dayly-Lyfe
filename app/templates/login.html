@@ -21,7 +21,7 @@
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}:<br>
-            {{ form.username(size=32) }}<br>
+            <input id="username" name="username" required="" size="32" type="text" value="" placeholder="Username"><br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
