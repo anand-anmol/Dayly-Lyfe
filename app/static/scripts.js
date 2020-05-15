@@ -148,7 +148,11 @@ function addThingToDo() {
             type: "POST",
             contentType: 'application/json',
             dataType : 'json',
-            data : JSON.stringify(thingToDo)
+            data : JSON.stringify(thingToDo),
+            success: function () {
+                console.log('success')
+                window.location.reload()
+            }
         });
         window.location.reload()
     }
@@ -163,6 +167,7 @@ function thingCompleted(id) {
             window.location.reload()
         }
     });
+    window.location.reload()
 }
 
 function deleteThingToDo(id) {
