@@ -67,6 +67,7 @@ def view_notes():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
     notes = db.session.query(Note).filter_by(user_id=current_user.username).all()
+<<<<<<< HEAD
     for note in notes:
         note.date = note.date.strftime("%d %b, %Y")
     return render_template('view-notes.html', title="Your notes", notes=notes)
@@ -81,3 +82,10 @@ def delete_note(note_id):
     db.session.commit()
     return redirect(url_for('view_notes'))
 
+=======
+    return render_template('view-notes.html', title="Your notes", notes=notes)
+
+@app.route('/about', methods=['GET'])
+def About():
+    return render_template("About.html", title='About Page')
+>>>>>>> about
