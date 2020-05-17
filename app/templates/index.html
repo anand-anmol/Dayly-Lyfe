@@ -4,29 +4,31 @@
 
 <style>
     .todo {
-        width: 20vw;
         background-image: linear-gradient(0deg, pink, white);
-        float: right;
-        margin-top: 10vh;
-        height: 60vh;
         text-align: center;
-        padding-top: 2%;
     }
     .todo_box {
-        margin-right: 60px;
+        width: 25vw;
+        margin-top: 15px;
     }
     .calender {
-        width: 30vw;
-        height: 68vh;
-        margin-left: 0vw;
-        margin-top: 10vh;
-        position: fixed;
+        margin-top: 15px;
+        border-radius: 5px;
     }
+
+    @media (max-width: 1080px) {
+    .todo {
+        height: 488px;
+        width: 216px;
+    }
+}
+
 </style>
 
-    <div class="container">
+    <div style="height: 400px;">
+    <div class="container" align="center">
 
-    <div class="calender" style="opacity: 0.8;">
+    <div class="calender" style="opacity: 0.8;" align="center">
         <div class="card">
             <h3 class="card-header" id="monthAndYear" align="center"></h3>
             <table class="table table-bordered table-responsive-sm" id="calendar">
@@ -98,15 +100,17 @@
                 <option value=2020>2020</option>
             </select>
         </form>
-                </div>
-                </div>
-        </div>
+</div>
+
+
+
 
 <div class="todo_box">
     <div class="todo">
         <h4>To Do:</h4>
+
         <input type="text" id="thing-to-do">
-        <button onclick="addThingToDo()">+</button>
+        <button onclick="addThingToDo()" style="margin-left: -5px;">+</button>
 
         <div id="things-to-do">
 
@@ -115,9 +119,11 @@
 {%if i.if_done == False%}
 
             <div style="padding-top: 15px;">
+                <div style="text-align: left; margin-left: 30px; margin-right: 10px">
     <strong>
-    {{ i.content }} 
-    <button onclick="thingCompleted({{i.id}})" style="text-align: right;">✔</button> <br>
+    • {{ i.content }}
+
+    <button onclick="thingCompleted({{i.id}})" style="margin-left: 15px;">✔</button> <br>
     </strong>
             </div>
 {%endif%}
@@ -125,7 +131,7 @@
 {%if i.if_done == True%}
 
     <del>
-    {{ i.content }} 
+    • {{ i.content }}
     <button onclick="deleteThingToDo({{i.id}})" style="text-align: right;">❌</button> <br>
     </del>
 
@@ -133,7 +139,7 @@
 
 {%endfor%}
 
-            
+ </div>
 
         </div>
 
@@ -144,8 +150,8 @@
     </div>
 
 </div>
-
-
-
+</div>
+</div>
+</div>
 
 {% endblock %}
