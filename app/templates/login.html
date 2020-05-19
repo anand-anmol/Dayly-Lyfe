@@ -5,11 +5,13 @@
 
 .login {
   margin-left: 20px;
-  margin-top: 30px;
-  max-width: 430px;
+  margin-top: 50px;
+  max-width: 350px;
   height: 420px;
   border: 1px solid #9C9C9C;
-  background-image: linear-gradient(to bottom, #aec1c3, #a9b5b7, #bcc5c6, #cfd5d5, #e3e5e5);
+  background-image: linear-gradient(to bottom, #6c757d, #a9b5b7, #bcc5c6, #cfd5d5, #e3e5e5);
+  border-radius: 8px;
+  opacity: 0.9;
 }
 
 html,body{
@@ -24,7 +26,7 @@ font-family: 'Numans', sans-serif;
 
 <div align="center">
 <div class="login">
-    <h1 align="center" style="margin-top: 10px">Log In</h1><br><br>
+    <h1 align="center" style="margin-top: 10px">Sign In</h1><br>
     <div style="margin-left: 15px">
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
@@ -48,13 +50,14 @@ font-family: 'Numans', sans-serif;
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <div align="left">
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
+
+        <p align="left">{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <div align="right" style="margin-right: 20px;">
+        <p><input id="submit" class="btn btn-primary btn-block" name="submit" type="submit" value="Login"></p><br>
             </div>
     </form>
-        <div align="left">
-    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+        <div align="center">
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Click to Register!</a></p>
             </div>
     </div>
 </div>
