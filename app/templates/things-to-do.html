@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+    .todo {
+        background-image: linear-gradient(0deg, pink, white);
+        text-align: center;
+    }
+
+    .todo_box {
+        width: 30vw;
+        margin-top: 5vh;
+        display: inline-block;
+        text-align: center;
+    }   
+
+    @media (max-width: 1080px) {
+    .todo {
+        height: 488px;
+        width: 216px;
+    }
+}
+
+</style>
+
+<div class="todo_box">
+    <div class="todo">
+        <h4>To Do:</h4>
+
+        <input type="text" id="thing-to-do">
+        <button onclick="addThingToDo()" style="margin-left: -5px;">+</button>
+
+        <div id="things-to-do">
+
+{%for i in things_to_do%}
+
+{%if i.if_done == False%}
+
+            <div style="padding-top: 15px;">
+                <div style="text-align: center; margin-left: 30px; margin-right: 10px">
+    <strong>
+    • {{ i.content }}
+
+    <button onclick="thingCompleted({{i.id}})" style="margin-left: 15px;">✔</button> <br>
+    </strong>
+            </div>
+{%endif%}
+
+{%endfor%}
+
+<br><br>
+
+{%for i in things_to_do%}
+
+{%if i.if_done == True%}
+
+    <del>
+    • {{ i.content }}
+    <button onclick="deleteThingToDo({{i.id}})" style="text-align: right;">❌</button> <br>
+    </del>
+
+    <br>
+
+{%endif%}
+
+{%endfor%}
+
+ </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../static/things_to_do.js"></script>
+
+{% endblock %}

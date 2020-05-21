@@ -11,10 +11,9 @@ import os
 @app.route('/')
 @app.route('/index')
 def index():
-    things_to_do = []
     if current_user.is_authenticated:
         things_to_do = db.session.query(ThingToDo).filter_by(user_id=current_user.username).all()
-    return render_template("index.html", title='DaylyLyfe', things_to_do=things_to_do, is_user_authenticated=current_user.is_authenticated)
+    return render_template("index.html", title='DaylyLyfe')
 
 @app.route('/about')
 def about():
@@ -97,16 +96,15 @@ def create_thing_to_do():
     thing_to_do = ThingToDo(user_id=current_user.username, content=content)
     db.session.add(thing_to_do)
     db.session.commit()
-    response = make_response(render_template('index.html'))
 
-    return response
+    return redirect('/things-to-do')
 
-@app.route('/things-to-do', methods=['GET'])
+@app.route('/things-to-do', methods=['GET', 'DELETE', 'PUT'])
 def get_things_do():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
     things_to_do = db.session.query(ThingToDo).filter_by(user_id=current_user.username).all()
-    return render_template('view-things_to_do.html', title="Your things_to_do", things_to_do=things_to_do)
+    return render_template('things-to-do.html', title="Things to Do", things_to_do=things_to_do)
 
 @app.route('/delete/thing-to-do/<int:id>', methods=['DELETE'])
 def delete_thing_to_do(id):
@@ -114,17 +112,17 @@ def delete_thing_to_do(id):
         ThingToDo.id == id).first()
     db.session.delete(thing_to_do)
     db.session.commit()
-    response = make_response(render_template('index.html'))
 
-    return response    
+    return redirect('/things-to-do')
+
 
 @app.route('/complete/thing-to-do/<int:id>', methods=['PUT'])
 def complete_thing_to_do(id):
     db.session.query(ThingToDo).filter(ThingToDo.id == id).update({'if_done': True})
     db.session.commit()
-    response = make_response(render_template('index.html'))
 
-    return response
+    return redirect('/things-to-do')
+
 
 @app.route('/favicon.ico') 
 def favicon(): 
