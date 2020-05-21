@@ -1,6 +1,13 @@
 # DaylyLyfe
 
-One Paragraph of project description goes here
+A scheduler for anyone
+
+Let’s you keep track of dates
+
+Let’s you enter information for dates to
+plan events
+
+Includes sign in, notes, and a to do list
 
 ## Getting Started
 
