@@ -1,1 +1,1 @@
-web: flask db upgrade; flask translate compile; gunicorn daylylyfe:app
+web: flask db upgrade; flask translate compile; flask run
