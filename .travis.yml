@@ -10,4 +10,7 @@ script:
 deploy:
   provider: heroku
   api_key: 
-    secure: "eda048bd-8a90-4b78-a613-b49bf4aba88a"
+    secure: 524a3a1b-1ec0-4726-a05c-05c91b9e363b
+  app: daylylyfe
+  on:
+    anand-anmol/Dayly-Lyfe
