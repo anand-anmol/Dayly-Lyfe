@@ -13,16 +13,41 @@
         <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
 
         <style>
-            body {
-              background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
-              height: 100%;
-              text-align: center;
-        
+             body {
+
               /* Center and scale the image nicely */
               background-position: center;
               background-repeat: no-repeat;
               background-size: cover;
               background-attachment: fixed;
+
+               animation-name: animate;
+              animation-direction: alternate-reverse;
+              animation-duration: 30s;
+              animation-fill-mode: forwards;
+              animation-iteration-count: infinite;
+              animation-play-state: running;
+              animation-timing-function: ease-in-out;
+            }
+            @keyframes animate{
+              0%{
+               background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(13).jpg");
+              }
+              20%{
+              background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(8).jpg");
+              }
+              40%{
+                background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(13).jpg");
+              }
+              60%{
+              background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(8).jpg");
+              }
+              80%{
+              background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(13).jpg");
+              }
+              100%{
+              background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full%20page/img(8).jpg");
+              }
             }
             html {
                 height: 100%;
