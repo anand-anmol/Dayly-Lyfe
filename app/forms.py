@@ -27,6 +27,10 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+    
+    def validate_password(self, password):
+        if len(password.data) <= 8 or password.data.isalpha() or password.data.isdigit():
+            raise ValidationError('Password must be 8 characters long and must contain atleast one number.')
 
 class CreateNoteForm(FlaskForm):
     content = StringField('Content', validators=[DataRequired()])
