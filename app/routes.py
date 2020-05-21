@@ -14,7 +14,7 @@ def index():
     things_to_do = []
     if current_user.is_authenticated:
         things_to_do = db.session.query(ThingToDo).filter_by(user_id=current_user.username).all()
-    return render_template("index.html", title='DaylyLyfe', things_to_do=things_to_do)
+    return render_template("index.html", title='DaylyLyfe', things_to_do=things_to_do, is_user_authenticated=current_user.is_authenticated)
 
 @app.route('/about')
 def about():
