@@ -1,5 +1,3 @@
-import { Model } from "sequelize/types";
-
 let today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
