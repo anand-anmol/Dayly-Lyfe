@@ -1,37 +1,74 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Register</h1>
+
+<style>
+
+html,body{
+background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+
+.register {
+  margin-top: 30px;
+  max-width: 420px;
+  height: 420px;
+  border: 1px solid #9C9C9C;
+  background-image: linear-gradient(to bottom, #6c757d, #a9b5b7, #bcc5c6, #cfd5d5, #e3e5e5);
+  border-radius: 8px;
+  opacity: 0.9;
+}
+
+</style>
+
+<div align="center">
+<div class="register">
+    <h1 align="center" style="margin-top: 10px">Sign Up</h1><br>
     <form action="" method="post">
+        <div style="margin-left: 20px">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+            <div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+
+            <input id="username" class="form-control" name="username" required="" size="32" type="text" value="" placeholder="Username" style="margin-right: 15px;"><br></div>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=64) }}<br>
+            <div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+
+            <input id="email" class="form-control" name="email" required="" size="32" type="text" value="" placeholder="Email" style="margin-right: 15px;"><br></div>
             {% for error in form.email.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+            <div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+
+            <input id="password" class="form-control" name="password" required="" size="32" type="password" value="" placeholder="Password" style="margin-right: 15px;"><br></div>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2(size=32) }}<br>
+            <div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            <input id="password2" class="form-control" name="password2" required="" size="32" type="password" value="" placeholder="Repeat Password" style="margin-right: 15px;"><br></div>
+
             {% for error in form.password2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <br><p style="margin-right: 15px;"><input id="submit" class="btn btn-primary btn-block" name="submit" type="submit" value="Create Account"></p>
+        </div>
     </form>
+</div>
+</div>
 {% endblock %}

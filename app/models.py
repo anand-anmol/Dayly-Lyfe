@@ -30,6 +30,13 @@ class Note(db.Model):
     def __repr__(self):
         return '<Note {}>'.format(self.content)
 
+class ThingToDo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String)
+    if_done = db.Column(db.Boolean, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    def __repr__(self):
+        return '<ThingToDo {}>'.format(self.content)
 
 @login.user_loader
 def load_user(id):

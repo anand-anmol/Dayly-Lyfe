@@ -2,12 +2,34 @@
 
 {% block content %}
 
-<ul>
+<style>
+    .noteBlock {
+        width: 200px;
+        height: 200px;
+        background-image: linear-gradient(0deg, lightblue, white);
+        float: left;
+        margin-left: 20px;
+        margin-top: 30px;
+        border-radius: 5px;
+        text-align: center;
+        font-family: "Verdana";
+        word-wrap: break-word;
+    }
 
-{%for i in notes%} 
-    <li>{{i.content}}</li> 
-{%endfor%} 
+</style>
+{%for i in notes%}
+<div class="noteBlock">
+    <b><u>{{i.date}}</u></b>
 
-</ul>
+    <div align="right" style="margin-top: -24px; margin-right: 3px; text-decoration: none;">
+        <a href="{{url_for('delete_note', note_id=i.id)}}">✖</a>
+    </div>
+
+
+    <br><p style="margin-top: -10px; font-size: 15px; text-align: left; padding-left: 5px">{{i.content}}</p>
+</div>
+{%endfor%}
+
+
 
 {% endblock %}
