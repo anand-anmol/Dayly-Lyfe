@@ -1,6 +1,13 @@
 # DaylyLyfe
 
-One Paragraph of project description goes here
+A scheduler for anyone
+
+Let’s you keep track of dates
+
+Let’s you enter information for dates to
+plan events
+
+Includes sign in, notes, and a to do list
 
 ## Getting Started
 
@@ -28,4 +35,16 @@ The app is currently deployed on Heroku as a Flask app with a SQLite Database.
 
 ## Authors
 
-See the list of [contributors](https://github.com/anand-anmol/Dayly-Lyfe/contributors) who participated in this project.
+Owen as minute taker and front-end coder
+
+Nathan as scrum master and product owner
+
+Harish as back-end coder and unit/application tester
+
+David as front-end coder
+
+Arshia as front-end coder
+
+Anmol as back-end coder and version control
+
+See the list of [contributors](https://github.com/anand-anmol/Dayly-Lyfe/contributors).
