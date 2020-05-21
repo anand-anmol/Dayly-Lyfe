@@ -43,6 +43,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('view_notes') }}">View Notes</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('get_things_do') }}">Things to Do</a>
+                </li>
                 <li>
                   <a class="nav-link" href="{{ url_for('about') }}">About</a>
                 </li>
@@ -80,6 +83,5 @@
         {% endwith %}
 
         {% block content %}{% endblock %}
-        <script src="../static/scripts.js"></script>
     </body>
 </html>

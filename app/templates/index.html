@@ -3,18 +3,6 @@
 {% block content %}
 
 <style>
-    .todo {
-        width: 20vw;
-        background-image: linear-gradient(0deg, pink, white);
-        float: right;
-        margin-top: 10vh;
-        height: 60vh;
-        text-align: center;
-        padding-top: 2%;
-    }
-    .todo_box {
-        margin-right: 60px;
-    }
     .calender {
         width: 30vw;
         height: 68vh;
@@ -98,54 +86,11 @@
                 <option value=2020>2020</option>
             </select>
         </form>
-                </div>
-                </div>
-        </div>
-
-<div class="todo_box">
-    <div class="todo">
-        <h4>To Do:</h4>
-        <input type="text" id="thing-to-do">
-        <button onclick="addThingToDo()">+</button>
-
-        <div id="things-to-do">
-
-{%for i in things_to_do%}
-
-{%if i.if_done == False%}
-
-            <div style="padding-top: 15px;">
-    <strong>
-    {{ i.content }} 
-    <button onclick="thingCompleted({{i.id}})" style="text-align: right;">✔</button> <br>
-    </strong>
-            </div>
-{%endif%}
-
-{%if i.if_done == True%}
-
-    <del>
-    {{ i.content }} 
-    <button onclick="deleteThingToDo({{i.id}})" style="text-align: right;">❌</button> <br>
-    </del>
-
-{%endif%}
-
-{%endfor%}
-
-            
-
-        </div>
-
-        <div id="finished-tasks">
-
-        </div>
-
-    </div>
-
 </div>
 
-
-
+</div>
+</div>
+</div>
+<script src="../static/scripts.js"></script>
 
 {% endblock %}
