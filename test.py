@@ -48,11 +48,32 @@ class TestAskMe(unittest.TestCase):
         u = User(username='jake', email='i@b.c')
         self.assertEqual(u.username, 'jake')
         self.assertEqual(u.email, 'i@b.c')
-    
+
+    def test_create_user_fail(self):
+        u = User(username='bob', email='bob@b.c')
+        self.assertFalse(u.username == 'tom')
+        self.assertFalse(u.email == 'tom@b.c')
+
     def test_create_note(self):
-        n = Note(content='a',user_id='a')
+        n = Note(content='a', user_id='a')
         self.assertEqual(n.content, 'a')
         self.assertEqual(n.user_id, 'a')
+
+    def test_create_note_fail(self):
+        n = Note(content='a', user_id='a')
+        self.assertFalse(n.content == 'b')
+        self.assertFalse(n.user_id == 'b')
+
+    def test_create_todo(self):
+        t = ThingToDo(content='test', user_id='test')
+        self.assertEqual(t.content, 'test')
+        self.assertEqual(t.user_id, 'test')
+
+    def test_create_todo_fail(self):
+        t = ThingToDo(content='test', user_id='test')
+        self.assertFalse(t.content == 'bob')
+        self.assertFalse(t.user_id == 'bob')
+
 
 if __name__ == "__main__":
     unittest.main()
